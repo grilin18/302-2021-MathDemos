@@ -5,10 +5,7 @@ void setup(){
 void draw(){
   background(128);
   
-  float p = millis() / 2000.0;
-  float size = lerpy(50, 300, p);
-  
-  fill(p * 255);
+  float size = mappy(mouseX, 0, width, 50, 300);
   
   ellipse(width/2, height/2, size, size);
 }
@@ -26,4 +23,10 @@ float lerpy(float min, float max, float p, boolean allowExtrapolation){
   
   
   return min + (max - min) * p;
+}
+
+float mappy(float inVal, float inMin, float inMax, float outMin, float outMax){
+  float p = (inVal - inMin) / (inMax - inMin);
+  
+  return lerpy(outMin, outMax, p);
 }
